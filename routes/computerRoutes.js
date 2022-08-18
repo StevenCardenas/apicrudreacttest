@@ -4,6 +4,16 @@ const computerSchema = require("../models/computer"); // importamos el modelo de
 const router = express.Router();
 //PARAMETROS: lo que se quiere poner para recoger informacion
 //BODY: lo que se quiere escribir para añadir info
+
+//cors
+
+router.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+    next();
+  });
 ///GET all users///
 router.get('/computers', (req,res) => {
     computerSchema //Cargamos el esquema ya creado en model de nuestro cliente
@@ -51,6 +61,16 @@ router.delete("/computer/:id", (req,res) => { //a la url le añadimos un paráme
     .catch((error) => res.json({message: error})); 
 }); 
  
+//Get user by id
+router.post('/computerid',  (req, res) => {
+    computerSchema.find({id: req.body.id}, function(docs, err){
+        if(!err){
+            res.send(docs)
+        }else{
+            res.send(err)
+        }
+    })
+  })
 
 //GET 1 user by ID OBJECT:
 /*
