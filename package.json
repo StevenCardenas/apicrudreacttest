@@ -1,0 +1,15 @@
+{
+  "name": "apicrud",
+  "version": "1.0.0",
+  "description": "apicrud",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "Steven Cardenas",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "mongoose": "^6.5.2"
+  }
+}
